@@ -11,14 +11,15 @@ const {isValidRequest,
 
 const createUser = async function(req,res){
     try{
-         let {title, name, phone, email, password, address} = req.body;
-         let user = {}
+        
          
          if(!isValidRequest(req.body)){
             return res
                     .status(400)
                     .send({status: false, message:"Enter a Valid Input"})
          }
+         let {title, name, phone, email, password, address} = req.body;
+         let user = {}
          if(title){
             title = title.trim()
             if(!isValidTitle(title)){
@@ -78,8 +79,9 @@ const createUser = async function(req,res){
                 .status(400)                  
                 .send({status:false, message:"email or phone already in use"})
        }
-       user.phone = phone
-       user.email = email
+       user.phone = phone  //in the user object we have added key value pair they are user.phone as a key and phone as a value for the key
+       user.email = email  // ex. to add key value pair in the object  
+                          //syntax :  objectName.keyName = value for the key    
 
        if(password){
         password = password.trim()
